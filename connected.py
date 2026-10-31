@@ -1,7 +1,7 @@
 import sqlite3
 import pandas as pd
 def extract_data():
-    conn = sqlite3.connect("/home/ecozero/pipeline Batch Processing/super_store.db")
+    conn = sqlite3.connect("super_store.db")
     query = """
     SELECT products.product_name, products.category, order_items.quantity, order_items.price_at_purchase 
     FROM products
@@ -22,7 +22,7 @@ def transform_data(df):
     df_sorted = df_grouped.sort_values(by='revenue', ascending=False)
     return df_sorted
 def load_data(df):
-    df.to_csv("/home/ecozero/pipeline Batch Processing/Finale_data.csv", index=False)
+    df.to_csv("Finale_data.csv", index=False)
 
 df_raw = extract_data()
 df_clean = transform_data(df_raw)
